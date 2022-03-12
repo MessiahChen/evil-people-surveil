@@ -1,0 +1,23 @@
+{
+	"name": "EPS Privacy Reporter",
+	"version": "1.0",
+	"description": "Manages privacy settings and allows the user to ask third parties to send requests regarding their data under the CCPA/CPRA.",
+	"manifest_version": 3,
+	"permissions": [
+		"storage", 
+		"activeTab", 
+		"scripting", 
+		"webNavigation", 
+		"tabs"
+	],
+	"host_permissions": [
+		"*://*/*"
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"options_page": "options.html"
+}
