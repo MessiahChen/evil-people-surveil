@@ -3,6 +3,8 @@
 
 // Retrieve the overall site container
 let sitesDiv = document.getElementById("sitesDiv");
+let emailForm = document.getElementById("emailForm");
+let emailButton = document.getElementById("emailButton");
 
 const siteInputs = {};
 
@@ -59,3 +61,27 @@ function loadSites() {
 
 // Display all sites stored in storage when the page is loaded
 loadSites();
+
+document.addEventListener('DOMContentLoaded', function () {
+
+	// Fill in the mailto later
+	emailButton.href = "mailto:jperrino@andrew.cmu.edu";
+	emailButton.href += "?Subject=Data Management Request";
+	emailButton.href += "&Body=";
+
+	/*emailForm.action = "mailto:jperrino@andrew.cmu.edu";
+	emailForm.action += "?Subject=Data Management Request";
+	emailForm.action += "&Body=test";*/
+
+	chrome.storage.sync.get({ sites: {} }, function(result) {
+
+		var sites = result.sites;
+		for (site in sites) {
+			if (sites[site]) {
+				// emailForm.action += escape(site + "\n");
+				emailButton.href += "•" + escape("\t") + escape(site + "\n");
+			}
+		}
+	});
+
+});
