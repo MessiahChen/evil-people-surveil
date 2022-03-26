@@ -21,3 +21,15 @@ button.current {
 #addedDiv {
 	display: none;
 }
+
+#wrap {
+	display: block;
+}
+
+#sentRequest {
+	display: none;
+}
+
+#currentSite {
+	text-align: center;
+}

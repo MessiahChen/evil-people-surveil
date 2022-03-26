@@ -10,11 +10,52 @@
 	<title></title>
 </head>
 <body>
+	<h2 id="currentSite"></h2>
 	<!-- Div containing the button to add a site to the list of sites -->
 	<div id="addDiv">
 		<h2>Add to list of sites?</h2>
 		<button id="addButton">Add</button>
 	</div>
+
+	<!-- Groups selection -->
+	<div id="wrap"> 
+		<table>
+			<tr>
+				<td></td>
+				<td>EFF</td>
+				<td>PRC</td>
+			</tr>
+			<tr>
+				<td>Know Categories</td>
+				<td><input type="CheckBox", id="kc_eff"/></td>
+				<td><input type="CheckBox", id="kc_prc"/></td>
+			</tr>
+			<tr>
+				<td>Know Specific</td>
+				<td><input type="CheckBox", id="ks_eff"/></td>
+				<td><input type="CheckBox", id="ks_prc"/></td>
+			</tr>
+			<tr>
+				<td>Delete</td>
+				<td><input type="CheckBox", id="del_eff"/></td>
+				<td><input type="CheckBox", id="del_prc"/></td>
+			</tr>
+			<tr>
+				<td>Opt out</td>
+				<td><input type="CheckBox", id="opt_eff"/></td>
+				<td><input type="CheckBox", id="opt_prc"/></td>
+			</tr>
+		</table>
+		<p>Authorize the above groups to make the selected requests to currenturl.com</p>
+		<button id="addSend">Send!</button>
+	</div>
+	
+
+	<!-- Div containing the div with a message - this is initially hidden -->
+	<div id="sentRequest">
+		<p>Requests sent!</p>
+	</div>
+
 	<!-- Div containing the div with a message - this is initially hidden -->
 	<div id="addedDiv">
 		<p>This site has been added to your list of tracked sites.</p>
