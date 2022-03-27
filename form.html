@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CCPA Authorized Agent Request Form</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				font-size: 16px;
+			}
+
+			body {
+				font-family: 'Microsoft Yahei';
+				margin: 0;
+				padding: 0;
+			}
+
+			.container {
+				width: 1024px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>CCPA Authorized Agent Request Form</h1>
+			<div>
+				<fieldset>
+					<legend>What type of request would you like to make? </legend>
+					<div>
+						<input type="checkbox" id="optout" name="type" value="optout">
+						<label for="optout">Request to opt-out of sale of personal information</label>
+					</div>
+					<div>
+						<input type="checkbox" id="know" name="type" value="know">
+						<label for="know">Request to know/access information collected about you</label>
+					</div>
+					<div>
+						<input type="checkbox" id="delete" name="type" value="delete">
+						<label for="delete">Request to delete information collected about you</label>
+					</div>
+				</fieldset>
+			</div>
+			</br>
+			<div>
+				<fieldset>
+					<legend>Consumer Information</legend>
+					Please provide any information which you have already provided to the company (companies) for which
+					you would like to make a request. This information will be used to search for relevant data to
+					complete your request.
+					<div>
+						<label>First Name：
+							<input type="text" name="first_name" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Last Name：
+							<input type="text" name="last_name" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Date of Birth (MM/DD/YYYY)：
+							<input type="text" name="birthday" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Email Address：
+							<input type="text" name="email" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Primary Phone Number：
+							<input type="text" name="phone" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Other Phone Number：
+							<input type="text" name="other_phone">
+						</label>
+					</div>
+					<div>
+						<label>Address Line 1：
+							<input type="text" name="address1" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Address Line 2：
+							<input type="text" name="address2" required="false">
+						</label>
+					</div>
+					<div>
+						<label>City：
+							<input type="text" name="city" required="required">
+						</label>
+					</div>
+					<div>
+						<label>State：
+							<input type="text" name="state" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Zip Code：
+							<input type="text" name="zip" required="required">
+						</label>
+					</div>
+					<div>
+						<label>Company-related identifier, if any (eg. account number)：
+							<input type="text" name="cid">
+						</label>
+					</div>
+					<div>
+						<label>Other identifiers (eg. IP address): 
+							<input type="text" name="oid">
+						</label>
+					</div>
+				</fieldset>
+				</br>
+				<div>
+					<fieldset>
+						<legend>How would you like to receive the company’s response?</legend>
+						<div>
+							<input type="checkbox" id="isemail" name="response" value="isemail">
+							<label for="isemail">By email to the following email address:</label>
+							<input type="text" name="res_email">
+						</div>
+						<div>
+							<input type="checkbox" id="ismail" name="response" value="ismail">
+							<label for="ismail">By mail to the following mailing address: </label>
+							<input type="text" name="res_mail">
+						</div>
+					</fieldset>
+				</div>
+				</br>
+				<div>
+					<fieldset>
+						<legend>Signature</legend>
+						Please upload a photo of your signature below to allow us to complete your request.
+						<form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data" >
+						　　　<input type="file" id="upload" name="upload" /> <br />
+						　　　<input type="submit" value="Upload" />
+						</form>
+					</fieldset>
+				</div>
+				</br>
+				<div>
+					<form name="submit" action="html_form_action.php" method="get">
+					<input type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="js/background.js"></script>
+	</body>
+</html>

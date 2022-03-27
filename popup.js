@@ -8,6 +8,7 @@ let addButton = document.getElementById("addButton");
 let addSend = document.getElementById("addSend");
 let sentRequest = document.getElementById("sentRequest");
 let tableWrap = document.getElementById("wrap");
+let openForm = document.getElementById("openForm");
 
 // Set checkbox 
 function setCheckbox(eff, prc) {
@@ -122,5 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Hide the add button, display the added text
 		tableWrap.style.display = "none";
 		sentRequest.style.display = "block";
+	})
+	openForm.addEventListener("click", function() {
+		window.open('form.html');
 	})
 });
