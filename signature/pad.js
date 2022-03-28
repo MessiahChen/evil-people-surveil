@@ -57,9 +57,9 @@ saveButton.addEventListener("click", function (event) {
         alert("Please provide signature.");
     } else {
         var sigURL = pad.toDataURL()
-        alert("This is the base64 encoded signature " + sigURL)
+         // alert("This is the base64 encoded signature " + sigURL)
         // uncomment the line below to have the add on download the image
-        //  download(sigURL, "signature.png");
+        download(sigURL, "signature.png");
     }
 });
 
