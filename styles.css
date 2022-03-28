@@ -1,0 +1,47 @@
+.whole {
+	width: 100%;
+}
+
+.half {
+	width: 50%;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.centered-text {
+	text-align: center;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+}
+
+.navbar {
+	border-bottom: 2px solid black;
+}
+
+.header {
+	background-color: whitesmoke;
+}
+
+.header > a {
+	color: black;
+}
+
+.current {
+	background-color: lightgray;
+}

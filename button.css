@@ -1,7 +1,3 @@
-html {
-	width: 300px;
-}
-
 button {
 	outline: none;
 	margin: 10px;
@@ -12,24 +8,4 @@ button {
 button.current {
 	box-shadow: 0 0 0 2px white, 
 				0 0 0 4px black;
-}
-
-#addDiv {
-	display: block;
-}
-
-#addedDiv {
-	display: none;
-}
-
-#wrap {
-	display: block;
-}
-
-#sentRequest {
-	display: none;
-}
-
-#currentSite {
-	text-align: center;
 }

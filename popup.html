@@ -4,36 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="popup.css">
 	<link rel="stylesheet" href="button.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Evil People Surveil Privacy Controller</title>
 </head>
 <body>
-	<div id="signature-pad" class="m-signature-pad">
-		<div class="m-signature-pad--body">
-		  <canvas></canvas>
-		</div>
-		<div class="m-signature-pad--footer">
-		  <div class="description">Sign above</div>
-		  <button class="button clear" data-action="clear">Clear</button>
-		  <button class="button save" data-action="save">Save</button>
-		</div>
-	  </div>
-	  <script src = "signature/signature_pad.umd.js"></script>
-	  <script src = "signature/pad.js"></script>
-</body>
-<body>
-	<h2 id="currentSite"></h2>
 	<!-- Div containing the button to add a site to the list of sites -->
 	<div id="addDiv">
-		<h2>Add to list of sites?</h2>
+		<h3 id="currentSite"></h3>
 		<button id="addButton">Add</button>
-		<button id="openForm">Request Form</button>
+		<hr>
+	</div>
+
+	<!-- Div saying this site has been added -->
+	<div id="addedDiv">
+		<p>This site has been added to your list of tracked sites.</p>
+		<hr>
 	</div>
 
 	<!-- Groups selection -->
-	<div id="wrap"> 
+	<div id="wrap">
+		<h3>Select Requests</h3>
 		<table>
 			<tr>
 				<td></td>
@@ -61,20 +55,43 @@
 				<td><input type="CheckBox", id="opt_prc"/></td>
 			</tr>
 		</table>
-		<p>Authorize the above groups to make the selected requests to currenturl.com</p>
-		<button id="addSend">Send!</button>
-	</div>
-	
-
-	<!-- Div containing the div with a message - this is initially hidden -->
-	<div id="sentRequest">
-		<p>Requests sent!</p>
+		<button id="addRequestsForSite">Authorize these requests for this site</button>
+		<hr>
 	</div>
 
-	<!-- Div containing the div with a message - this is initially hidden -->
-	<div id="addedDiv">
-		<p>This site has been added to your list of tracked sites.</p>
+	<!-- Div saying the requests are saved -->
+	<div id="requestsSaved">
+		<p>Requests saved!</p>
+		<hr>
 	</div>
+
+	<!-- Signature -->
+	<div id="signature-pad" class="m-signature-pad">
+		<h3>Create Signature</h3>
+		<div class="m-signature-pad--body">
+			<canvas></canvas>
+		</div>
+		<div class="m-signature-pad--footer">
+			<div class="description">Sign above</div>
+			<button class="button clear" data-action="clear">Clear</button>
+			<button class="button save" data-action="save">Save</button>
+		</div>
+		<button id="hideSignature">Hide Signature</button>
+		<hr>
+	</div>
+	<script src = "signature/signature_pad.umd.js"></script>
+	<script src = "signature/pad.js"></script>
+
+	<button id="openSignature">Create Signature</button>
+
+	<!-- Site preferences / form access / sending requests -->
+	<div>
+		<button id="sitesButton">Site Preferences</button>
+		<button id="openForm">Information Form</button>
+		<br>
+		<a id="emailButton"><button>Send Requests</button></a>
+	</div>
+
 	<script src="popup.js" type="text/javascript"></script>
 </body>
 </html>

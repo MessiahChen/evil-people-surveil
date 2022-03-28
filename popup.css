@@ -1,0 +1,39 @@
+html {
+	width: 320px;
+}
+
+#addDiv {
+	display: block;
+}
+
+#addedDiv {
+	display: none;
+}
+
+#wrap {
+	display: block;
+}
+
+#requestsSaved {
+	display:  none;
+}
+
+#sentRequest {
+	display: none;
+}
+
+#currentSite {
+	text-align: center;
+}
+
+#openSignature {
+	display: block;
+}
+
+#signature-pad {
+	display: none;
+}
+
+.m-signature-pad--body {
+	border: 2px solid black;
+}
