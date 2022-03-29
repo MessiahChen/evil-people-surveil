@@ -6,67 +6,134 @@ let sitesDiv = document.getElementById("sitesDiv");
 
 const siteInputs = {};
 
+// Mail info
+emailButton.href = "mailto:EFF";
+emailButton.href += "?Subject=Authorized Agent Request";
+emailButton.href += "&Body=";
+
+chrome.storage.sync.get({ priv_setting: {} }, function(result) {
+	var priv_setting = result.priv_setting;
+
+	if (!priv_setting.isEmpty) {
+		// Mail info
+		emailButton.href += "To Whom It May Concern," + escape("\n\n") + "I am exercising my rights as a California citizen under the CCPA/CPRA. "
+		+ "I am authorizing your organization to act as an agent on my behalf and asking you to make the following requests for the following sites:" + escape("\n\n");
+
+		var del_str = "";
+		var kc_str = "";
+		var ks_str = "";
+		var opt_str = "";
+
+		for (site in priv_setting) {
+			if (priv_setting[site]['eff']['del_eff']) {
+				del_str += "•" + escape("\t") + site + escape("\n");
+			}
+			if (priv_setting[site]['eff']['kc_eff']) {
+				kc_str += "•" + escape("\t") + site + escape("\n");
+			}
+			if (priv_setting[site]['eff']['ks_eff']) {
+				ks_str += "•" + escape("\t") + site + escape("\n");
+			}
+			if (priv_setting[site]['eff']['opt_eff']) {
+				opt_str += "•" + escape("\t") + site + escape("\n");
+			}
+		}
+
+		if (del_str.length > 0) {
+			emailButton.href += "Delete my data:" + escape("\n") + del_str + escape("\n");
+		}
+		if (kc_str.length > 0) {
+			emailButton.href += "Tell me what categories my data is in:" + escape("\n") + kc_str + escape("\n");
+		}
+		if (ks_str.length > 0) {
+			emailButton.href += "Tell me what specific personal data has been stored:" + escape("\n") + ks_str + escape("\n");
+		}
+		if (opt_str.length > 0) {
+			emailButton.href += "Opt me out of future data storage:" + escape("\n") + opt_str + escape("\n");
+		}
+
+		emailButton.href += "My signature is attached below." + escape("\n");
+	}
+});
+
 /**
  * Displays all sites stored within local storage along with a checkbox to toggle their status.
  */
 function loadSites() {
 
 	// Retrieve sites stored in local storage
-	chrome.storage.sync.get({ sites: {} }, function(result) {
-		var sites = result.sites;
+	chrome.storage.sync.get({ priv_setting: {} }, function(result) {
+		var priv_setting = result.priv_setting;
 
-		if (!sites.isEmpty) {
-			var websiteHeader = document.createElement("h2");
-			websiteHeader.innerText = "Website";
-			websiteHeader.style.display = "inline-block";
-			websiteHeader.style.width = "50%";
-			sitesDiv.appendChild(websiteHeader);
+		var table = document.createElement("table");
+		var headerRow = document.createElement("tr");
 
-			var textHeader = document.createElement("h2");
-			textHeader.innerText = "Include in Requests?";
-			textHeader.style.display = "inline-block";
-			textHeader.style.width = "50%";
-			sitesDiv.appendChild(textHeader);
-		}
+		var header = document.createElement("th");
+		header.style.padding = "8px";
+		header.innerText = "Website";
+		headerRow.appendChild(header);
 
-		// Iterate through all sites
-		for (var site in sites) {
+		header = document.createElement("th");
+		header.style.padding = "8px";
+		header.innerText = "Delete Data";
+		headerRow.appendChild(header);
 
-			// Construct HTML elements - we have to do this through JavaScript since these are dynamic
-			var siteDiv = document.createElement("div");
-			var innerSiteDiv = document.createElement("div");
-			var inputChunk = document.createElement("input");
-			var inputChunkDiv = document.createElement("div");
+		header = document.createElement("th");
+		header.style.padding = "8px";
+		header.innerText = "Know Categories";
+		headerRow.appendChild(header);
 
-			// Style the div representing the site name
-			innerSiteDiv.innerText = site;
-			innerSiteDiv.style.display = "inline-block";
-			innerSiteDiv.style.width = "50%";
+		header = document.createElement("th");
+		header.style.padding = "8px";
+		header.innerText = "Know Data";
+		headerRow.appendChild(header);
 
-			// Style the div representing the site toggle
-			inputChunkDiv.style.display = "inline-block";
-			inputChunkDiv.style.width = "50%";
+		header = document.createElement("th");
+		header.style.padding = "8px";
+		header.innerText = "Opt Out";
+		headerRow.appendChild(header);
 
-			// Style the checkbox
-			inputChunk.type = "checkbox";
-			// inputChunk.value = site;
-			inputChunk.checked = sites[site];
-			inputChunk.id = site;
-			// Give the checkbox an event to update the site status when it is clicked
-			inputChunk.addEventListener("change", function(event) {
-				// Update the site's status accordingly
-				sites[event.target.id] = event.target.checked;
-				chrome.storage.sync.set({ sites: sites });
-			});
+		table.appendChild(headerRow);
+		sitesDiv.appendChild(table);
 
-			// Put margin around each site's div
-			siteDiv.style.margin = "8px";
+		if (!priv_setting.isEmpty) {
+			for (var site in priv_setting) {
+				var row = document.createElement("tr");
+				var td = document.createElement("td");
+				td.innerText = site;
+				td.style.padding = "8px";
+				row.appendChild(td);
 
-			// Combine the HTML chunks into a hierarchy
-			inputChunkDiv.appendChild(inputChunk);
-			siteDiv.appendChild(innerSiteDiv);
-			siteDiv.appendChild(inputChunkDiv);
-			sitesDiv.appendChild(siteDiv);
+				for (var req in priv_setting[site]["eff"]) {
+					td = document.createElement("td");
+					td.style.padding = "8px";
+
+					var inputChunk = document.createElement("input");
+					var inputChunkDiv = document.createElement("div");
+					// Style the div representing the site toggle
+					inputChunkDiv.style.display = "inline-block";
+					inputChunkDiv.style.width = "50%";
+
+					// Style the checkbox
+					inputChunk.type = "checkbox";
+					inputChunk.checked = priv_setting[site]["eff"][req];
+					inputChunk.id = site + "=" + req;
+					// Give the checkbox an event to update the site status when it is clicked
+					inputChunk.addEventListener("change", function(event) {
+						// Update the site's status accordingly
+						var parts = event.target.id.split("=");
+
+						priv_setting[parts[0]]["eff"][parts[1]] = event.target.checked;
+						chrome.storage.sync.set({ priv_setting: priv_setting });
+					});
+
+					inputChunkDiv.appendChild(inputChunk);
+					td.appendChild(inputChunkDiv);
+					row.appendChild(td);
+
+				}
+				table.appendChild(row);
+			}
 		}
 	});
 }

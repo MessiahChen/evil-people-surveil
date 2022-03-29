@@ -12,22 +12,9 @@
 	<title>Evil People Surveil Privacy Controller</title>
 </head>
 <body>
-	<!-- Div containing the button to add a site to the list of sites -->
-	<div id="addDiv">
-		<h3 id="currentSite"></h3>
-		<button id="addButton">Add</button>
-		<hr>
-	</div>
-
-	<!-- Div saying this site has been added -->
-	<div id="addedDiv">
-		<p>This site has been added to your list of tracked sites.</p>
-		<hr>
-	</div>
-
 	<!-- Groups selection -->
 	<div id="wrap">
-		<h3>Select Requests</h3>
+		<h3 id="currentSite"></h3>
 		<table>
 			<tr>
 				<td></td>
@@ -55,7 +42,7 @@
 				<td><input type="CheckBox", id="opt_prc"/></td>
 			</tr>
 		</table>
-		<button id="addRequestsForSite">Authorize these requests for this site</button>
+		<button id="addRequestsForSite">Save request types for this site</button>
 		<hr>
 	</div>
 
@@ -86,10 +73,10 @@
 
 	<!-- Site preferences / form access / sending requests -->
 	<div>
+		<a id="emailButton"><button>Send request for this site</button></a>
+		<br>
 		<button id="sitesButton">Site Preferences</button>
 		<button id="openForm">Information Form</button>
-		<br>
-		<a id="emailButton"><button>Send Requests</button></a>
 	</div>
 
 	<script src="popup.js" type="text/javascript"></script>
